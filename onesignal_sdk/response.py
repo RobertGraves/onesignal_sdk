@@ -1,5 +1,3 @@
-import httpx
-
 
 class OneSignalResponse:
     """
