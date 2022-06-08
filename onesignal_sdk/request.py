@@ -2,6 +2,7 @@ from typing import Any, Dict
 
 import aiohttp
 import asyncio
+import requests
 
 from .error import OneSignalHTTPError
 from .response import OneSignalResponse
@@ -22,9 +23,13 @@ def _build_request_kwargs(token: str = None,
 
 def _handle_response(response) -> OneSignalResponse:
     """Given an httpx.Response either raise an Exception or return final Response object."""
-    if response.status >= 300:
+    
+    if hasattr(response,'status_code'):
+        status_code = response.status_code
+    elif hasattr(response,'status'):
+        status_code = response.status
+    if status_code >= 300:
         raise OneSignalHTTPError(response)
-
     return OneSignalResponse(response)
 
 
@@ -35,7 +40,8 @@ def basic_auth_request(method: str,
                        params: Dict[str, Any] = None) -> OneSignalResponse:
     """Make a request using basic authorization."""
     request_kwargs = _build_request_kwargs(token, payload, params)
-    return _handle_response(aiohttp.request(method, url, **request_kwargs))
+    
+    return _handle_response(requests.request(method,url,**request_kwargs))
 
 
 async def async_basic_auth_request(method: str,
