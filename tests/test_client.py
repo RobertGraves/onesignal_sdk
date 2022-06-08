@@ -34,7 +34,7 @@ class TestClient:
                             }
                         )):
             response = client.send_notification(body)
-            assert response.status_code == 200
+            assert response.status == 200
             assert response.body['success']
 
     def test_cancel_notification(self, client: Client, ok_response: MockHttpxResponse):
@@ -50,7 +50,7 @@ class TestClient:
                             }
                         )):
             response = client.cancel_notification(notification_id)
-            assert response.status_code == 200
+            assert response.status == 200
             assert response.body['success']
 
     def test_view_notification(self, client: Client, ok_response: MockHttpxResponse):
@@ -66,7 +66,7 @@ class TestClient:
                             }
                         )):
             response = client.view_notification(notification_id)
-            assert response.status_code == 200
+            assert response.status == 200
             assert response.body['success']
 
     def test_view_notifications(self, client: Client, ok_response: MockHttpxResponse):
@@ -83,7 +83,7 @@ class TestClient:
                             }
                         )):
             response = client.view_notifications(query)
-            assert response.status_code == 200
+            assert response.status == 200
             assert response.body['success']
 
     def test_notification_history(self, client: Client, ok_response: MockHttpxResponse):
@@ -101,7 +101,7 @@ class TestClient:
                             }
                         )):
             response = client.notification_history(notification_id, body)
-            assert response.status_code == 200
+            assert response.status == 200
             assert response.body['success']
 
     def test_view_device(self, client: Client, ok_response: MockHttpxResponse):
@@ -117,7 +117,7 @@ class TestClient:
                             }
                         )):
             response = client.view_device(device_id)
-            assert response.status_code == 200
+            assert response.status == 200
             assert response.body['success']
 
     def test_view_devices(self, client: Client, ok_response: MockHttpxResponse):
@@ -134,7 +134,7 @@ class TestClient:
                             }
                         )):
             response = client.view_devices(query)
-            assert response.status_code == 200
+            assert response.status == 200
             assert response.body['success']
 
     def test_add_device(self, client: Client, ok_response: MockHttpxResponse):
@@ -151,7 +151,7 @@ class TestClient:
                             }
                         )):
             response = client.add_device(body)
-            assert response.status_code == 200
+            assert response.status == 200
             assert response.body['success']
 
     def test_edit_device(self, client: Client, ok_response: MockHttpxResponse):
@@ -169,7 +169,7 @@ class TestClient:
                             }
                         )):
             response = client.edit_device(device_id, body)
-            assert response.status_code == 200
+            assert response.status == 200
             assert response.body['success']
 
     def test_edit_tags(self, client: Client, ok_response: MockHttpxResponse):
@@ -184,7 +184,7 @@ class TestClient:
                             required_body=body
                         )):
             response = client.edit_tags(user_id, body)
-            assert response.status_code == 200
+            assert response.status == 200
             assert response.body['success']
 
     def test_new_session(self, client: Client, ok_response: MockHttpxResponse):
@@ -202,7 +202,7 @@ class TestClient:
                             }
                         )):
             response = client.new_session(device_id, body)
-            assert response.status_code == 200
+            assert response.status == 200
             assert response.body['success']
 
     def test_new_purchase(self, client: Client, ok_response: MockHttpxResponse):
@@ -220,7 +220,7 @@ class TestClient:
                             }
                         )):
             response = client.new_purchase(device_id, body)
-            assert response.status_code == 200
+            assert response.status == 200
             assert response.body['success']
 
     def test_csv_export(self, client: Client, ok_response: MockHttpxResponse):
@@ -237,7 +237,7 @@ class TestClient:
                             required_body=body
                         )):
             response = client.csv_export(body)
-            assert response.status_code == 200
+            assert response.status == 200
             assert response.body['success']
 
     def test_create_segment(self, client: Client, ok_response: MockHttpxResponse):
@@ -251,7 +251,7 @@ class TestClient:
                             required_body=body
                         )):
             response = client.create_segment(body)
-            assert response.status_code == 200
+            assert response.status == 200
             assert response.body['success']
 
     def test_delete_segment(self, client: Client, ok_response: MockHttpxResponse):
@@ -264,7 +264,7 @@ class TestClient:
                             expected_in_path=f'/apps/{self.APP_ID}/segments/{segment_id}'
                         )):
             response = client.delete_segment(segment_id)
-            assert response.status_code == 200
+            assert response.status == 200
             assert response.body['success']
 
     def test_view_outcomes(self, client: Client, ok_response: MockHttpxResponse):
@@ -278,7 +278,7 @@ class TestClient:
                             required_params={'outcome_names': ','.join(outcome_names)}
                         )):
             response = client.view_outcomes(outcome_names)
-            assert response.status_code == 200
+            assert response.status == 200
             assert response.body['success']
 
     def test_view_apps(self, client: Client, ok_response: MockHttpxResponse):
@@ -290,7 +290,7 @@ class TestClient:
                             expected_in_path='/apps'
                         )):
             response = client.view_apps()
-            assert response.status_code == 200
+            assert response.status == 200
             assert response.body['success']
 
     def test_view_app(self, client: Client, ok_response: MockHttpxResponse):
@@ -303,7 +303,7 @@ class TestClient:
                             expected_in_path=f'/apps/{app_id}'
                         )):
             response = client.view_app(app_id)
-            assert response.status_code == 200
+            assert response.status == 200
             assert response.body['success']
 
     def test_create_app(self, client: Client, ok_response: MockHttpxResponse):
@@ -317,7 +317,7 @@ class TestClient:
                             required_body=body
                         )):
             response = client.create_app(body)
-            assert response.status_code == 200
+            assert response.status == 200
             assert response.body['success']
 
     def test_update_app(self, client: Client, ok_response: MockHttpxResponse):
@@ -332,5 +332,5 @@ class TestClient:
                             required_body=body
                         )):
             response = client.update_app(app_id, body)
-            assert response.status_code == 200
+            assert response.status == 200
             assert response.body['success']

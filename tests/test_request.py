@@ -35,5 +35,5 @@ class TestBasicAuthRequest:
                                       self.TOKEN,
                                       {'name': 'test'},
                                       {'offset': 3})
-        assert response.status_code == 200
+        assert response.status == 200
         assert response.body == self.RESPONSE_200.body

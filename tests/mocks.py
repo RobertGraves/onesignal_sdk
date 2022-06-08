@@ -4,8 +4,8 @@ from typing import Any, Dict
 class MockHttpxResponse:
     """A mock response class that implements basic interface for httpx.Response"""
 
-    def __init__(self, status_code: int, body: dict):
-        self.status_code = status_code
+    def __init__(self, status: int, body: dict):
+        self.status = status
         self.body = body
 
     def json(self) -> dict:

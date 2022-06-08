@@ -106,7 +106,7 @@ REST API are parsed as JSON and returned to you as an instance of `OneSignalResp
 consisting of following attributes:
 
 - **.body**: JSON parsed body of the response, as a Python dictionary.
-- **.status_code**: HTTP status code of the response.
+- **.status**: HTTP status code of the response.
 - **.http_response**: Original `httpx.Response` object, in case you want to access more attributes.
 
 Sample code:
@@ -116,7 +116,7 @@ Sample code:
     client = AsyncClient(...)
     response = await client.view_apps()
     print(response.body) # JSON parsed response
-    print(response.status_code) # Status code of response
+    print(response.status) # Status code of response
     print(response.http_response) # Original http response object.
 
 Handling Exceptions
@@ -150,12 +150,12 @@ the sample snippet below, error handling is the same of `AsyncClient`
         # Make a request to OneSignal and parse response
         response = client.send_notification(notification_body)
         print(response.body) # JSON parsed response
-        print(response.status_code) # Status code of response
+        print(response.status) # Status code of response
         print(response.http_response) # Original http response object.
 
-    except OneSignalHTTPError as e: # An exception is raised if response.status_code != 2xx
+    except OneSignalHTTPError as e: # An exception is raised if response.status != 2xx
         print(e)
-        print(e.status_code)
+        print(e.status)
         print(e.http_response.json()) # You can see the details of error by parsing original response
 
 API methods

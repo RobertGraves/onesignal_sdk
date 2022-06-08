@@ -36,7 +36,7 @@ class TestClient:
                             }
                         )):
             response = await client.send_notification(body)
-            assert response.status_code == 200
+            assert response.status == 200
             assert response.body['success']
 
     @pytest.mark.asyncio
@@ -54,7 +54,7 @@ class TestClient:
                             }
                         )):
             response = await client.cancel_notification(notification_id)
-            assert response.status_code == 200
+            assert response.status == 200
             assert response.body['success']
 
     @pytest.mark.asyncio
@@ -72,7 +72,7 @@ class TestClient:
                             }
                         )):
             response = await client.view_notification(notification_id)
-            assert response.status_code == 200
+            assert response.status == 200
             assert response.body['success']
 
     @pytest.mark.asyncio
@@ -91,7 +91,7 @@ class TestClient:
                             }
                         )):
             response = await client.view_notifications(query)
-            assert response.status_code == 200
+            assert response.status == 200
             assert response.body['success']
 
     @pytest.mark.asyncio
@@ -111,7 +111,7 @@ class TestClient:
                             }
                         )):
             response = await client.notification_history(notification_id, body)
-            assert response.status_code == 200
+            assert response.status == 200
             assert response.body['success']
 
     @pytest.mark.asyncio
@@ -129,7 +129,7 @@ class TestClient:
                             }
                         )):
             response = await client.view_device(device_id)
-            assert response.status_code == 200
+            assert response.status == 200
             assert response.body['success']
 
     @pytest.mark.asyncio
@@ -148,7 +148,7 @@ class TestClient:
                             }
                         )):
             response = await client.view_devices(query)
-            assert response.status_code == 200
+            assert response.status == 200
             assert response.body['success']
 
     @pytest.mark.asyncio
@@ -167,7 +167,7 @@ class TestClient:
                             }
                         )):
             response = await client.add_device(body)
-            assert response.status_code == 200
+            assert response.status == 200
             assert response.body['success']
 
     @pytest.mark.asyncio
@@ -187,7 +187,7 @@ class TestClient:
                             }
                         )):
             response = await client.edit_device(device_id, body)
-            assert response.status_code == 200
+            assert response.status == 200
             assert response.body['success']
 
     @pytest.mark.asyncio
@@ -204,7 +204,7 @@ class TestClient:
                             required_body=body
                         )):
             response = await client.edit_tags(user_id, body)
-            assert response.status_code == 200
+            assert response.status == 200
             assert response.body['success']
 
     @pytest.mark.asyncio
@@ -224,7 +224,7 @@ class TestClient:
                             }
                         )):
             response = await client.new_session(device_id, body)
-            assert response.status_code == 200
+            assert response.status == 200
             assert response.body['success']
 
     @pytest.mark.asyncio
@@ -244,7 +244,7 @@ class TestClient:
                             }
                         )):
             response = await client.new_purchase(device_id, body)
-            assert response.status_code == 200
+            assert response.status == 200
             assert response.body['success']
 
     @pytest.mark.asyncio
@@ -263,7 +263,7 @@ class TestClient:
                             required_body=body
                         )):
             response = await client.csv_export(body)
-            assert response.status_code == 200
+            assert response.status == 200
             assert response.body['success']
 
     @pytest.mark.asyncio
@@ -279,7 +279,7 @@ class TestClient:
                             required_body=body
                         )):
             response = await client.create_segment(body)
-            assert response.status_code == 200
+            assert response.status == 200
             assert response.body['success']
 
     @pytest.mark.asyncio
@@ -294,7 +294,7 @@ class TestClient:
                             expected_in_path=f'/apps/{self.APP_ID}/segments/{segment_id}'
                         )):
             response = await client.delete_segment(segment_id)
-            assert response.status_code == 200
+            assert response.status == 200
             assert response.body['success']
 
     @pytest.mark.asyncio
@@ -310,7 +310,7 @@ class TestClient:
                             required_params={'outcome_names': ','.join(outcome_names)}
                         )):
             response = await client.view_outcomes(outcome_names)
-            assert response.status_code == 200
+            assert response.status == 200
             assert response.body['success']
 
     @pytest.mark.asyncio
@@ -324,7 +324,7 @@ class TestClient:
                             expected_in_path='/apps'
                         )):
             response = await client.view_apps()
-            assert response.status_code == 200
+            assert response.status == 200
             assert response.body['success']
 
     @pytest.mark.asyncio
@@ -339,7 +339,7 @@ class TestClient:
                             expected_in_path=f'/apps/{app_id}'
                         )):
             response = await client.view_app(app_id)
-            assert response.status_code == 200
+            assert response.status == 200
             assert response.body['success']
 
     @pytest.mark.asyncio
@@ -355,7 +355,7 @@ class TestClient:
                             required_body=body
                         )):
             response = await client.create_app(body)
-            assert response.status_code == 200
+            assert response.status == 200
             assert response.body['success']
 
     @pytest.mark.asyncio
@@ -372,5 +372,5 @@ class TestClient:
                             required_body=body
                         )):
             response = await client.update_app(app_id, body)
-            assert response.status_code == 200
+            assert response.status == 200
             assert response.body['success']

@@ -8,5 +8,5 @@ class OneSignalResponse:
 
     def __init__(self, response: httpx.Response):
         self.http_response = response
-        self.status_code = response.status_code
+        self.status = response.status
         self.body = response.json()

@@ -22,7 +22,7 @@ def _build_request_kwargs(token: str = None,
 
 def _handle_response(response) -> OneSignalResponse:
     """Given an httpx.Response either raise an Exception or return final Response object."""
-    if response.status_code >= 300:
+    if response.status >= 300:
         raise OneSignalHTTPError(response)
 
     return OneSignalResponse(response)
