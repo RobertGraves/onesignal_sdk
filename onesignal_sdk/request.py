@@ -22,13 +22,15 @@ def _build_request_kwargs(token: str = None,
 
 
 def _handle_response(response) -> OneSignalResponse:
-    """Given an httpx.Response either raise an Exception or return final Response object."""
+    """Given an Response either raise an Exception or return final Response object."""
     
     if hasattr(response,'status_code'):
         status_code = response.status_code
     elif hasattr(response,'status'):
         status_code = response.status
     if status_code >= 300:
+        #temporary thing to get it in memory so it dumps to one signal so its easier to diagnose
+        response=response
         raise OneSignalHTTPError(response)
     return OneSignalResponse(response)
 
